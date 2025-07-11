@@ -7,6 +7,10 @@ import os
 load_dotenv()
 app = Flask(__name__)
 
+@app.route("/")
+def home():
+    return "OK", 200
+
 @app.route("/webhook", methods=["POST"])
 def webhook():
     mensagem = request.form.get("Body")
