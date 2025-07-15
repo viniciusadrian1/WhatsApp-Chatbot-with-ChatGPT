@@ -3,3 +3,7 @@ python-dotenv
 twilio
 openai>=1.0.0
 gunicorn
+
+requests
+openai
+python-dotenv
