@@ -39,3 +39,5 @@ def transcrever_audio_whisper(caminho_audio):
     with open(caminho_audio, "rb") as audio_file:
         transcricao = openai.Audio.transcribe("whisper-1", audio_file)
     return transcricao["text"]
+
+print('🔊 Módulo utils.py carregado: Whisper pronto para transcrever')
