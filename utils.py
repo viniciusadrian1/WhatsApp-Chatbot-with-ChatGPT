@@ -1,10 +1,10 @@
 import os
-import openai
 import requests
 from dotenv import load_dotenv
+import openai
 
 load_dotenv()
-openai.api_key = os.getenv("OPENAI_API_KEY")
+client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 def baixar_arquivo_audio(url):
     print("🔽 Baixando:", url)
@@ -16,14 +16,17 @@ def baixar_arquivo_audio(url):
 
 def transcrever_audio_whisper(caminho):
     print("📝 Transcrevendo:", caminho)
-    with open(caminho, "rb") as audio:
-        transcricao = openai.Audio.transcribe("whisper-1", audio)
-    return transcricao["text"]
+    with open(caminho, "rb") as audio_file:
+        transcription = client.audio.transcriptions.create(
+            model="whisper-1",
+            file=audio_file
+        )
+    return transcription.text
 
 def responder_chatgpt(mensagem):
     print("🤖 Enviando para o GPT:", mensagem)
-    resposta = openai.ChatCompletion.create(
+    response = client.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=[{ "role": "user", "content": mensagem }]
     )
-    return resposta.choices[0].message.content.strip()
+    return response.choices[0].message.content.strip()
