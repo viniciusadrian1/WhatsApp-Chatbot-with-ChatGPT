@@ -1,6 +1,0 @@
-Flask
-twilio
-python-dotenv
-openai
-requests
-gunicorn
