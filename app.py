@@ -5,6 +5,14 @@ from utils import responder_chatgpt, baixar_arquivo_audio, transcrever_audio_whi
 import os
 
 load_dotenv()
+# Contexto personalizado para o chatbot
+CONTEXT_PROMPT = (
+    "Você é um atendente virtual da loja Roupa de Cheiro. Seja educado, cordial e objetivo. "
+    "Responda sobre produtos infantis, kits de enxoval e itens personalizados como canecas, copos, bottons e chaveiros. "
+    "Endereço da loja: Rodovia Armando Salles, 6295 - Recreio Campestre - Itapecerica da Serra. "
+    "Telefone Fixo: (11) 5823-1546 | WhatsApp: (11) 97261-2511."
+)
+
 app = Flask(__name__)
 
 @app.route("/")
@@ -30,7 +38,8 @@ def webhook():
         else:
             mensagem_usuario = request.values.get("Body", "").strip()
 
-        resposta = responder_chatgpt(mensagem_usuario)
+        mensagem_completa = CONTEXT_PROMPT + "\n\nCliente: " + mensagem_usuario
+        resposta = responder_chatgpt(mensagem_completa)
         print("💬 Resposta:", resposta)
 
     except Exception as e:
