@@ -1,8 +1,7 @@
 # 🤖 ChatbotIA
+ChatbotIA is an intelligent assistant with integration to the ChatGPT API, designed to accept input via text and audio. It was developed using Python and Flask, providing a simple API-based interaction interface.
 
 ChatbotIA é um assistente inteligente com integração à API do ChatGPT, desenvolvido para aceitar entrada via texto e áudio. Ele foi criado com Python e Flask, oferecendo uma interface simples de interação por API.
-
-ChatbotIA is an intelligent assistant with integration to the ChatGPT API, designed to accept input via text and audio. It was developed using Python and Flask, providing a simple API-based interaction interface.
 
 **Autor:** Vinícius Adrian
 
