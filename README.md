@@ -1,107 +1,95 @@
 # 🤖 ChatbotIA
-ChatbotIA is an intelligent assistant with integration to the ChatGPT API, designed to accept input via text and audio. It was developed using Python and Flask, providing a simple API-based interaction interface.
 
-ChatbotIA é um assistente inteligente com integração à API do ChatGPT, desenvolvido para aceitar entrada via texto e áudio. Ele foi criado com Python e Flask, oferecendo uma interface simples de interação por API.
+**PT:** ChatbotIA é um assistente inteligente com integração à API do ChatGPT, que aceita entradas de texto e áudio. Desenvolvido em Python e Flask, oferece uma interface simples via API.  
+**EN:** ChatbotIA is an intelligent assistant integrated with the ChatGPT API, accepting text and audio inputs. Built with Python and Flask, it provides a simple API-based interface.
 
-**Autor:** Vinícius Adrian
+**Autor / Author:** Vinícius Adrian
 
-## 🧠 Funcionalidades
+---
 
-- 💬 Entrada de texto: envie mensagens diretamente para o chatbot.
-- 🎙️ Entrada de áudio: envie áudios (voz) e o sistema converte automaticamente para texto utilizando Whisper da OpenAI.
-- 🧠 Integração com a API da OpenAI (ChatGPT) para respostas inteligentes.
-- 🌐 API REST construída com Flask.
-- ☁️ Pronto para deploy no Heroku.
+## 🧠 Funcionalidades / Features
 
-## 🗂 Estrutura do Projeto
+- 💬 **Texto / Text:** envie mensagens diretamente / send messages directly.  
+- 🎙️ **Áudio / Audio:** converte voz em texto usando OpenAI Whisper / converts voice to text using OpenAI Whisper.  
+- 🧠 **IA / AI:** respostas inteligentes via ChatGPT / intelligent responses via ChatGPT.  
+- 🌐 **API REST:** construída com Flask / built with Flask.  
+- ☁️ **Deploy:** pronto para Heroku / ready for Heroku deployment.
+
+---
+
+## 🗂 Estrutura do Projeto / Project Structure
 
 ```
 chatbotia-main/
-│
-├── app.py              # Arquivo principal que executa o servidor Flask
-├── utils.py            # Funções auxiliares (ex: reconhecimento de voz)
-├── requirements.txt    # Dependências do projeto
-├── Procfile            # Arquivo de configuração para deploy no Heroku
-└── .env                # Variáveis de ambiente (não incluído por padrão)
+├── app.py          # Servidor Flask principal / Main Flask server
+├── utils.py        # Funções auxiliares / Helper functions
+├── requirements.txt# Dependências / Dependencies
+├── Procfile        # Configuração Heroku / Heroku config
+└── .env            # Variáveis de ambiente / Environment variables
 ```
 
-## ⚙️ Instalação
+---
 
-1. Clone o repositório:
+## ⚙️ Instalação / Installation
+
 ```bash
 git clone https://github.com/seu-usuario/chatbotia-main.git
 cd chatbotia-main
-```
-
-2. Crie um ambiente virtual:
-```bash
 python -m venv venv
 source venv/bin/activate  # Linux/Mac
 venv\Scripts\activate     # Windows
-```
-
-3. Instale as dependências:
-```bash
 pip install -r requirements.txt
 ```
 
-4. Crie um arquivo `.env` com o seguinte conteúdo:
+Crie o arquivo `.env` com sua chave da OpenAI:  
 ```
-OPENAI_API_KEY=sua-chave-aqui
+OPENAI_API_KEY=sua-chave-aqui / your-api-key-here
 ```
 
-## ▶️ Executando o projeto localmente
+---
+
+## ▶️ Executando / Running Locally
 
 ```bash
 python app.py
 ```
+A API estará disponível em `http://localhost:5000` / The API will be available at `http://localhost:5000`.
 
-A API estará disponível em `http://localhost:5000`.
+---
 
-## 📤 Endpoints da API
+## 📤 Endpoints da API / API Endpoints
 
 ### `POST /chat`
-
-- Envia uma mensagem de texto para o chatbot.
-- **Body JSON:**
+- **Descrição / Description:** Envia mensagem de texto / Sends text message.  
+- **Exemplo / Example:**
 ```json
 {
-  "message": "Olá, tudo bem?"
+  "message": "Olá, tudo bem?" / "Hello, how are you?"
 }
 ```
 
 ### `POST /audio`
+- **Descrição / Description:** Envia arquivo de áudio (WAV/MP3) / Sends audio file (WAV/MP3).  
+- **Body:** multipart/form-data com campo `file` / multipart/form-data with `file` field.
 
-- Envia um arquivo de áudio (formato WAV ou MP3).
-- **Body:** multipart/form-data com campo `file`.
+---
 
-## 🚀 Deploy no Heroku
+## 🚀 Deploy no Heroku / Heroku Deployment
 
-1. Faça login no Heroku:
 ```bash
 heroku login
-```
-
-2. Crie o app:
-```bash
-heroku create nome-do-app
-```
-
-3. Faça o deploy:
-```bash
+heroku create nome-do-app / app-name
 git init
-heroku git:remote -a nome-do-app
+heroku git:remote -a nome-do-app / app-name
 git add .
 git commit -m "deploy"
 git push heroku master
+heroku config:set OPENAI_API_KEY=sua-chave-aqui / your-api-key-here
 ```
 
-4. Adicione sua chave da OpenAI:
-```bash
-heroku config:set OPENAI_API_KEY=sua-chave-aqui
-```
+---
 
-## 📌 Requisitos
+## 📌 Requisitos / Requirements
 
-- Python 3.7+
-- Conta e chave de API da OpenAI
+- Python 3.7+  
+- Conta e chave de API da OpenAI / OpenAI account and API key
